@@ -53,10 +53,10 @@ public class ArrayDeque<T> implements List<T> {
         if (isEmpty()) {
             return null;
         }
-        T temp = items[tail + 1];
         tail = (tail + 1) % items.length;
+        T temp = items[tail];
         --size;
-        if (size == items.length / 2 && items.length >= 32) {
+        if (size == items.length / 2 - 1 && items.length >= 32) {
             esize();
         }
         return temp;
@@ -67,10 +67,10 @@ public class ArrayDeque<T> implements List<T> {
        if (isEmpty()) {
             return null;
         }
-        T temp = items[head - 1];
         head = (head - 1 + items.length) % items.length;
+        T temp = items[head];
         --size;
-        if (size == items.length / 2 && items.length >= 32) {
+        if (size == items.length / 2 - 1 && items.length >= 32) {
             esize();
         }
         return temp;
@@ -86,17 +86,18 @@ public class ArrayDeque<T> implements List<T> {
 
     private void resize() {
         T[] temp_items = (T[]) new Object[items.length * 2];
-        System.arraycopy(items, 0, temp_items, 0, items.length);
+        System.arraycopy(items, 0, temp_items, 0, head);
+        System.arraycopy(items, tail + 1, temp_items, items.length + tail + 1, items.length - tail - 1);
+        tail += items.length;
         items = temp_items;
-        head = 0;
-        tail = items.length - 1;
     }
 
     private void esize() {
         T[] temp_items = (T[]) new Object[items.length / 2];
-        System.arraycopy(items, tail + 1, temp_items, 0, items.length / 2);
+        for (int i = tail + 1; i <= tail + size; ++i) {
+            temp_items[i - tail - 1] = items[i % items.length];
+        }
         items = temp_items;
-        head = 0;
-        tail = items.length - 1;
+        head = tail = items.length - 1;
     }
 }
