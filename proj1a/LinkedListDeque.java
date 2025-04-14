@@ -1,9 +1,9 @@
-public class LinkedListDeque<T> implements List<T>{
+public class LinkedListDeque<T> implements List<T> {
 
     private class Node<T> {
-        public T item;
-        public Node<T> prev;
-        public Node<T> next;
+        private T item;
+        private Node<T> prev;
+        private Node<T> next;
         public Node(T i, Node<T> p, Node<T> n) {
             item = i;
             prev = p;
@@ -57,7 +57,7 @@ public class LinkedListDeque<T> implements List<T>{
     @Override
     public void printDeque() {
         Node<T> n = sentinel.next;
-        while(n != sentinel) {
+        while (n != sentinel) {
             System.out.println(n.item);
             n = n.next;
         }
@@ -90,13 +90,13 @@ public class LinkedListDeque<T> implements List<T>{
     @Override
     public T get(int index) {
         Node<T> n = sentinel.next;
-        for(int i = 0; i < index; ++i) {
+        for (int i = 0; i < index; ++i) {
             n = n.next;
         }
         return n.item;
     }
 
     public T getRecursive(int index) {
-        return sentinel.getRecursive(index);
+        return sentinel.next.getRecursive(index);
     }
 }
