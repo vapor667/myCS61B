@@ -19,9 +19,9 @@ public class ArrayDequeTest {
         ArrayDeque.addFirst(15);
         ArrayDeque.get(0);
         ArrayDeque.addFirst(17);
-        ArrayDeque.addFirst(18);
+        ArrayDeque.addLast(18);
         ArrayDeque.get(6);
         ArrayDeque.addFirst(20);
-        ArrayDeque.removeFirst();
+        System.out.println(ArrayDeque.removeLast());
     }
 }

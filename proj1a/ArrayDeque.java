@@ -86,17 +86,18 @@ public class ArrayDeque<T> implements List<T> {
 
     private void resize() {
         T[] temp_items = (T[]) new Object[items.length * 2];
-        for (int i = tail + 1; i <= tail + size; ++i) {
+        for (int i = (tail + 1) % items.length; i < (tail + 1) % items.length + size; ++i) {
             temp_items[(i + items.length) % temp_items.length] = items[i % items.length];
         }
         tail += items.length;
+        // head = (tail + size) % items.length;
         items = temp_items;
     }
 
     private void esize() {
         T[] temp_items = (T[]) new Object[items.length / 2];
-        for (int i = tail + 1; i <= tail + size; ++i) {
-            temp_items[i - tail - 1] = items[i % items.length];
+        for (int i = (tail + 1) % items.length; i <= (tail + 1) % items.length + size; ++i) {
+            temp_items[i - (tail + 1) % items.length] = items[i % items.length];
         }
         items = temp_items;
         head = tail = items.length - 1;
