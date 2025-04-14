@@ -1,19 +1,27 @@
 public class ArrayDequeTest {
     public static void main(String[] args) {
-        ArrayDeque<Integer> things = new ArrayDeque<>();
-        things.addFirst(2);
-        things.addLast(3);
-        things.addFirst(4);
-        things.addLast(3);
-        for(int i = 0; i < 16; ++i) {
-            things.addLast(i);
-        }
-        for(int i = 0; i < 16; ++i) {
-            int temp;
-            temp = things.removeFirst();
-            System.out.println(temp);
-        }
-        System.out.println(things.get(2));
-        things.printDeque();
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+        ArrayDeque.addLast(0);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(2);
+        ArrayDeque.addLast(3);
+        ArrayDeque.removeFirst();
+        ArrayDeque.removeLast();
+        ArrayDeque.addLast(6);
+        ArrayDeque.addLast(7);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(9);
+        ArrayDeque.addFirst(10);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(12);
+        ArrayDeque.get(0);
+        ArrayDeque.addFirst(14);
+        ArrayDeque.addFirst(15);
+        ArrayDeque.get(0);
+        ArrayDeque.addFirst(17);
+        ArrayDeque.addFirst(18);
+        ArrayDeque.get(6);
+        ArrayDeque.addFirst(20);
+        ArrayDeque.removeFirst();
     }
 }

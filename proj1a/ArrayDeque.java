@@ -33,14 +33,11 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        return size() == 0;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        if (size < 0) {
-            return 0;
-        }
         return size;
     }
 
@@ -53,10 +50,13 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public T removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
         tail = (tail + 1) % items.length;
         T temp = items[tail];
         --size;
-        if (size == items.length / 2 - 1 && items.length >= 32) {
+        if (size == items.length / 2 - 1 && items.length >= 16) {
             esize();
         }
         return temp;
@@ -64,10 +64,13 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public T removeLast() {
+       if (isEmpty()) {
+            return null;
+        }
         head = (head - 1 + items.length) % items.length;
         T temp = items[head];
         --size;
-        if (size == items.length / 2 - 1 && items.length >= 32) {
+        if (size == items.length / 2 - 1 && items.length >= 16) {
             esize();
         }
         return temp;
@@ -83,8 +86,9 @@ public class ArrayDeque<T> implements List<T> {
 
     private void resize() {
         T[] temp_items = (T[]) new Object[items.length * 2];
-        System.arraycopy(items, 0, temp_items, 0, head);
-        System.arraycopy(items, tail + 1, temp_items, items.length + tail + 1, items.length - tail - 1);
+        for (int i = tail + 1; i <= tail + size; ++i) {
+            temp_items[(i + items.length) % temp_items.length] = items[i % items.length];
+        }
         tail += items.length;
         items = temp_items;
     }
