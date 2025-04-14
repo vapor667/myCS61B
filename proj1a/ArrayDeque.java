@@ -89,8 +89,7 @@ public class ArrayDeque<T> implements List<T> {
         for (int i = (tail + 1) % items.length; i < (tail + 1) % items.length + size; ++i) {
             temp_items[(i + items.length) % temp_items.length] = items[i % items.length];
         }
-        tail += items.length;
-        // head = (tail + size) % items.length;
+        tail = (tail + 1) % items.length + items.length - 1;
         items = temp_items;
     }
 

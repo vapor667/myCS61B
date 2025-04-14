@@ -1,27 +1,28 @@
 public class ArrayDequeTest {
     public static void main(String[] args) {
         ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
-        ArrayDeque.addLast(0);
+        ArrayDeque.addFirst(0);
+        ArrayDeque.addFirst(1);
         ArrayDeque.removeLast();
-        ArrayDeque.addFirst(2);
         ArrayDeque.addLast(3);
+        ArrayDeque.addFirst(4);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(6);
+        ArrayDeque.get(0);
+        ArrayDeque.addFirst(8);
+        ArrayDeque.addLast(9);
+        ArrayDeque.get(4);
+        ArrayDeque.get(2);
         ArrayDeque.removeFirst();
+        ArrayDeque.addFirst(13);
         ArrayDeque.removeLast();
-        ArrayDeque.addLast(6);
-        ArrayDeque.addLast(7);
-        ArrayDeque.removeLast();
-        ArrayDeque.addFirst(9);
-        ArrayDeque.addFirst(10);
-        ArrayDeque.removeLast();
-        ArrayDeque.addFirst(12);
         ArrayDeque.get(0);
-        ArrayDeque.addFirst(14);
-        ArrayDeque.addFirst(15);
-        ArrayDeque.get(0);
+        ArrayDeque.addFirst(16);
         ArrayDeque.addFirst(17);
-        ArrayDeque.addLast(18);
-        ArrayDeque.get(6);
-        ArrayDeque.addFirst(20);
-        System.out.println(ArrayDeque.removeLast());
+        ArrayDeque.addFirst(18);
+        ArrayDeque.get(4);
+        ArrayDeque.addLast(20);
+        ArrayDeque.addLast(21);
+        System.out.println(ArrayDeque.removeFirst());
     }
 }
