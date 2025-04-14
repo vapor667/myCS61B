@@ -11,6 +11,7 @@ public class ArrayDequeTest {
         for(int i = 0; i < 16; ++i) {
             int temp;
             temp = things.removeFirst();
+            System.out.println(temp);
         }
         System.out.println(things.get(2));
         things.printDeque();

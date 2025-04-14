@@ -33,11 +33,14 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return size() == 0;
     }
 
     @Override
     public int size() {
+        if (size < 0) {
+            return 0;
+        }
         return size;
     }
 
@@ -50,9 +53,6 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public T removeFirst() {
-        if (isEmpty()) {
-            return null;
-        }
         tail = (tail + 1) % items.length;
         T temp = items[tail];
         --size;
@@ -64,9 +64,6 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public T removeLast() {
-       if (isEmpty()) {
-            return null;
-        }
         head = (head - 1 + items.length) % items.length;
         T temp = items[head];
         --size;
@@ -78,7 +75,7 @@ public class ArrayDeque<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if (index >= size) {
+        if (index >= size || index < 0) {
             return null;
         }
         return items[(tail + index + 1) % items.length];
